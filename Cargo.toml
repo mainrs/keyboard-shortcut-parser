@@ -15,8 +15,5 @@ serde = { version = "1.0.114", features = ["derive"], optional = true }
 [target.'cfg(windows)'.dependencies]
 winapi = { version = "0.3.9", features = ["winuser"] }
 
-[target.'cfg(not(windows))'.dependencies]
+[target.'cfg(target_os = "linux")'.dependencies]
 x11-dl = { version = "2.18.5", optional = true }
-
-[features]
-linux-x11 = ["x11-dl"]

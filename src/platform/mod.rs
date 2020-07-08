@@ -1,15 +1,15 @@
 use std::convert::TryFrom;
 use std::str::FromStr;
 
+#[cfg(target_os = "linux")]
+mod linux;
+#[cfg(target_os = "linux")]
+pub use linux::{LinuxKeyModifier as KeyModifier, LinuxKeySpecial as KeySpecial};
+
 #[cfg(windows)]
 mod windows;
 #[cfg(windows)]
 pub use windows::{WinKeyModifier as KeyModifier, WinKeySpecial as KeySpecial};
-
-#[cfg(all(target_os = "linux", feature = "linux-x11"))]
-mod x11;
-#[cfg(all(target_os = "linux", feature = "linux-x11"))]
-pub use x11::{X11KeyModifier as KeyModifier, X11KeySpecial as KeySpecial};
 
 impl From<KeyModifier> for &str {
     fn from(km: KeyModifier) -> Self {

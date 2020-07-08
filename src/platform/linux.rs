@@ -7,7 +7,7 @@ use x11_dl::xlib::*;
 
 bitflags! {
     #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
-    pub struct X11KeyModifier: c_uint {
+    pub struct LinuxKeyModifier: c_uint {
         #[allow(missing_docs)]
         const ALT = Mod1Mask;
         #[allow(missing_docs)]
@@ -21,7 +21,7 @@ bitflags! {
 
 bitflags! {
     #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
-    pub struct X11KeySpecial: c_uint {
+    pub struct LinuxKeySpecial: c_uint {
         #[allow(missing_docs)]
         const BACKSPACE = XK_BackSpace;
         #[allow(missing_docs)]
