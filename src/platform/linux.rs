@@ -6,6 +6,7 @@ use x11_dl::keysym::*;
 use x11_dl::xlib::*;
 
 bitflags! {
+    /// Bitflags holding all modifier keys.
     #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
     pub struct LinuxKeyModifier: c_uint {
         #[allow(missing_docs)]
@@ -20,6 +21,7 @@ bitflags! {
 }
 
 bitflags! {
+    /// Bitflags holding all special keys.
     #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
     pub struct LinuxKeySpecial: c_uint {
         #[allow(missing_docs)]
