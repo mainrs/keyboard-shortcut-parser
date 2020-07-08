@@ -23,7 +23,7 @@ impl From<KeyModifier> for &str {
     }
 }
 
-impl<'a> TryFrom<&'a str> for KeyModifier {
+impl TryFrom<&str> for KeyModifier {
     type Error = ();
 
     fn try_from(value: &str) -> Result<Self, Self::Error> {
@@ -37,7 +37,7 @@ impl FromStr for KeyModifier {
     fn from_str(s: &str) -> Result<Self, Self::Err> {
         let modifier = match s.to_lowercase().as_str() {
             "alt" => KeyModifier::ALT,
-            "control" => KeyModifier::CONTROL,
+            "control" | "ctrl" => KeyModifier::CONTROL,
             "shift" => KeyModifier::SHIFT,
             "super" => KeyModifier::SUPER,
             _ => panic!("Not a valid key modifier: {}", s),
@@ -90,10 +90,10 @@ impl From<KeySpecial> for &str {
     }
 }
 
-impl<'a> TryFrom<&'a str> for KeySpecial {
+impl TryFrom<&str> for KeySpecial {
     type Error = ();
 
-    fn try_from(value: &'a str) -> Result<Self, Self::Error> {
+    fn try_from(value: &str) -> Result<Self, Self::Error> {
         Self::from_str(value)
     }
 }
