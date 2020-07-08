@@ -6,9 +6,9 @@ mod windows;
 #[cfg(windows)]
 pub use windows::{WinKeyModifier as KeyModifier, WinKeySpecial as KeySpecial};
 
-#[cfg(all(linux, feature = "linux-x11"))]
+#[cfg(all(target_os = "linux", feature = "linux-x11"))]
 mod x11;
-#[cfg(all(linux, feature = "linux-x11"))]
+#[cfg(all(target_os = "linux", feature = "linux-x11"))]
 pub use x11::{X11KeyModifier as KeyModifier, X11KeySpecial as KeySpecial};
 
 impl From<KeyModifier> for &str {
