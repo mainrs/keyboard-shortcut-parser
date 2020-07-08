@@ -1,8 +1,11 @@
 //! This crate allows to parse keyboard shortcut strings and maps the results to the right keycodes.
 //! Keycode mapping is currently supported for X11 and Windows.
 
-#[deny(missing_docs, missing_copy_implementations, missing_debug_implementations)]
-
+#[deny(
+    missing_docs,
+    missing_copy_implementations,
+    missing_debug_implementations
+)]
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
 

@@ -35,22 +35,19 @@ fn parse_modifier_key(i: &str) -> IResult<&str, KeyModifier> {
 
 fn parse_key(i: &str) -> IResult<&str, Key> {
     let modifier_parser = map(parse_modifier_key, |km| Key::Modifier(km));
-    let key_parser = map(
-        alphanumeric1,
-        |s: &str| {
-            if s.len() == 1 {
-                // Simple alphanumeric char.
-                return Key::Alphanumeric(s.chars().next().unwrap());
-            }
-
-            let converted_to_special_key = KeySpecial::from_str(s);
-            if converted_to_special_key.is_ok() {
-                return Key::Special(converted_to_special_key.unwrap());
-            } else {
-                panic!("Not a valid special key or alphanumeric key: {}", s);
-            }
+    let key_parser = map(alphanumeric1, |s: &str| {
+        if s.len() == 1 {
+            // Simple alphanumeric char.
+            return Key::Alphanumeric(s.chars().next().unwrap());
         }
-    );
+
+        let converted_to_special_key = KeySpecial::from_str(s);
+        if converted_to_special_key.is_ok() {
+            return Key::Special(converted_to_special_key.unwrap());
+        } else {
+            panic!("Not a valid special key or alphanumeric key: {}", s);
+        }
+    });
     alt((modifier_parser, key_parser))(i)
 }
 
