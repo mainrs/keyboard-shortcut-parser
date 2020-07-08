@@ -4,7 +4,8 @@
 #![deny(
     missing_docs,
     missing_copy_implementations,
-    missing_debug_implementations
+    missing_debug_implementations,
+    unsafe_code,
 )]
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
