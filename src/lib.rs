@@ -1,5 +1,9 @@
-//! This crate allows to parse keyboard shortcut strings and maps the results to the right keycodes.
-//! Keycode mapping is currently supported for X11 and Windows.
+//! This crate allows to parse keyboard shortcut strings and maps the results to
+//! the right keycodes. Keycode mapping is currently supported for X11 and
+//! Windows.
+//!
+//! The main entry point is the [parse_key_string](fn.parse_key_string.html),
+//! which returns a `Vec<Key>` holding the parsed keys in-order.
 
 #![deny(
     missing_docs,
