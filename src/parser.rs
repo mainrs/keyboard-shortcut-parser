@@ -3,7 +3,7 @@ use crate::Key;
 use nom::branch::alt;
 use nom::bytes::complete::{tag, tag_no_case};
 use nom::character::complete::alphanumeric1;
-use nom::combinator::map;
+use nom::combinator::{all_consuming, map};
 use nom::multi::separated_list1;
 use nom::IResult;
 use std::str::FromStr;
@@ -64,7 +64,7 @@ fn parse_key(i: &str) -> IResult<&str, Key> {
 /// use keyboard_shortcut_parser::{parse_key_string, Key, KeyModifier, KeySpecial};
 ///
 /// let i = "ctrl+alt+delete";
-/// let v = parse_key_string(&i).unwrap().1;
+/// let v = parse_key_string(&i).unwrap();
 /// let expected = vec![
 ///     Key::Modifier(KeyModifier::CONTROL),
 ///     Key::Modifier(KeyModifier::ALT),
@@ -72,6 +72,11 @@ fn parse_key(i: &str) -> IResult<&str, Key> {
 /// ];
 /// assert_eq!(v, expected);
 /// ```
-pub fn parse_key_string(i: &str) -> IResult<&str, Vec<Key>> {
-    separated_list1(tag("+"), parse_key)(i)
+pub fn parse_key_string(i: &str) -> Result<Vec<Key>, &str> {
+    all_consuming(separated_list1(tag("+"), parse_key))(i)
+        .map_err(|_| "Failed to parse keystring")
+        .map(|t| {
+            debug_assert!(t.0.is_empty());
+            t.1
+        })
 }

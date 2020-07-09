@@ -1,6 +1,6 @@
 [package]
 name = "keyboard-shortcut-parser"
-version = "0.1.0"
+version = "0.2.0"
 description = "A library used to parse keyboard shortcut strings"
 repository = "https://github.com/SirWindfield/keyboard-shortcut-parser"
 authors = ["Sven Lechner <SirWindfield@users.noreply.github.com>"]
