@@ -8,5 +8,5 @@
 use keyboard_shortcut_parser::{parse_key_string, Key, KeyModifier, KeySpecial};
 
 let i = "ctrl+alt+delete";
-let v: Vec<Key> = parse_key_string(&i).unwrap().1;
+let v: Vec<Key> = parse_key_string(&i).unwrap();
 ```
