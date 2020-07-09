@@ -54,7 +54,9 @@ fn parse_key(i: &str) -> IResult<&str, Key> {
 ///
 /// # Panics
 ///
-/// Panics if the keystring can't be parsed correctly. This happens if the segments are not valid modifiers, special keys or are alphanumeric and longer than one char.
+/// Panics if the keystring can't be parsed correctly. This happens if the
+/// segments are not valid modifiers, special keys or are alphanumeric and
+/// longer than one char.
 ///
 /// # Examples
 ///
@@ -63,7 +65,12 @@ fn parse_key(i: &str) -> IResult<&str, Key> {
 ///
 /// let i = "ctrl+alt+delete";
 /// let v = parse_key_string(&i).unwrap().1;
-/// assert_eq!(v, vec![Key::Modifier(KeyModifier::CONTROL), Key::Modifier(KeyModifier::ALT), Key::Special(KeySpecial::DELETE)])
+/// let expected = vec![
+///     Key::Modifier(KeyModifier::CONTROL),
+///     Key::Modifier(KeyModifier::ALT),
+///     Key::Special(KeySpecial::DELETE),
+/// ];
+/// assert_eq!(v, expected);
 /// ```
 pub fn parse_key_string(i: &str) -> IResult<&str, Vec<Key>> {
     separated_list1(tag("+"), parse_key)(i)
